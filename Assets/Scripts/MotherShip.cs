@@ -25,7 +25,7 @@ public class MotherShip : MonoBehaviour
 		energy = GameObject.FindGameObjectsWithTag("Energy");
 		totalEnergy = energy.Length;
 		neededEnergy = Mathf.RoundToInt (totalEnergy * difficultyPercentage);
-		anim = GameObject.Find ("HUDCanvas").GetComponent<Animator>();
+		//anim = GameObject.Find ("HUDCanvas").GetComponent<Animator>();
 	}
 
 	void Update()

@@ -23,19 +23,18 @@ public class CharacterMovement : MonoBehaviour
 	{
 		//Store input axes
 		float lh = Input.GetAxisRaw("Horizontal");
-		float lv = Input.GetAxisRaw ("Vertical");
-
-		Move (lh, lv);
-
-		Animating(lh, lv);
+        float lv = Input.GetAxisRaw("Vertical");
+        
+        Move(lh, lv);
+        Animating(lh, lv);
 	}
 
 	void Move(float lh, float lv)
 	{
-		//Move the player
-		movement.Set (lh, 0f, lv);
+        //Move the player
+        movement.Set(lh, 0f, lv);
 
-		movement = movement.normalized * speed * Time.deltaTime;
+        movement = movement.normalized * speed * Time.deltaTime;
 
 		playerRigidbody.MovePosition(transform.position + movement);
 
@@ -43,7 +42,6 @@ public class CharacterMovement : MonoBehaviour
 		{
 			Rotating(lh, lv);
 		}
-
 	}
 
 	void Rotating(float lh, float lv)
