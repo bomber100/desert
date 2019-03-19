@@ -25,7 +25,7 @@ public class EnemyMovement : MonoBehaviour
 	{
 
 		// Set the destination of the nav mesh agent to the player.
-		if(motherShip.collectedEnergy != motherShip.neededEnergy)
+		if(MotherShip.collectedEnergy != MotherShip.neededEnergy)
 		{
 			nav.SetDestination (player.position);
 		}

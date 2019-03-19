@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MotherShip : MonoBehaviour 
 {
-	public int collectedEnergy = 0;
-	public int neededEnergy;
-
+    public Text txt;
+	public static int collectedEnergy = 0;
+	public static int neededEnergy;
+    public string gameOver = "GAME OVER!";
+    public string missionComplete = "MISSION COMPLETE!";
 	public GameObject[] energy;
-	public int totalEnergy;
+	public  int totalEnergy;
 
 	public float difficultyPercentage = 0.5f;
 	
@@ -25,25 +28,39 @@ public class MotherShip : MonoBehaviour
 		energy = GameObject.FindGameObjectsWithTag("Energy");
 		totalEnergy = energy.Length;
 		neededEnergy = Mathf.RoundToInt (totalEnergy * difficultyPercentage);
-		//anim = GameObject.Find ("HUDCanvas").GetComponent<Animator>();
+		anim = GameObject.Find ("HUDCanvas").GetComponent<Animator>();
 	}
 
 	void Update()
 	{
-		if(totalEnergy < neededEnergy || collectedEnergy == neededEnergy)
+		if(totalEnergy < neededEnergy )
 		{
-			//print ("Game Over!");
+            //print ("Game Over!");
+            txt.text = gameOver.ToString();
 			anim.SetTrigger("IsGameOver");
-
+            
 			restartTimer+= Time.deltaTime;
 
 			if(restartTimer >= restartDelay)
 			{
+                collectedEnergy = 0;
 				Application.LoadLevel(Application.loadedLevel);
 			}
 
 		}
-	}
+        if (collectedEnergy == neededEnergy) {
+            txt.text = missionComplete.ToString();
+            anim.SetTrigger("IsGameOver");
+
+            restartTimer += Time.deltaTime;
+
+            if (restartTimer >= restartDelay) {
+                collectedEnergy = 0;
+                Application.LoadLevel(Application.loadedLevel);
+            }
+
+        }
+    }
 
 	void OnTriggerEnter(Collider other)
 	{

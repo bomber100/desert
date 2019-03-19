@@ -19,8 +19,8 @@ public class UITextMS : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		msEnergy = motherShip.collectedEnergy;
-		energyNeeded = motherShip.neededEnergy;
+		msEnergy = MotherShip.collectedEnergy;
+		energyNeeded = MotherShip.neededEnergy;
 
 		GetComponent<Text>().text = msEnergy + " / " + energyNeeded;
 	}
